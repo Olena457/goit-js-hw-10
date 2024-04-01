@@ -25,8 +25,11 @@ const options = {
   onClose(selectedDates) {
     if (selectedDates[0] < new Date()) {
       iziToast.show({
-        title: 'Hey',
+        title: 'Future date',
         message: 'Please choose a date in the future',
+        position: 'topRight',
+        timeout: 1000,
+        color: 'red',
       });
       btnStart.disabled = true;
     } else {
@@ -58,8 +61,11 @@ btnStart.addEventListener('click', () => {
     } else {
       clearInterval(timer);
       iziToast.show({
-        title: 'Hey',
+        title: 'Digital timer',
         message: 'Countdown is over',
+        position: 'topRight',
+        timeout: 3000,
+        color: 'red',
       });
       timerHtml.style.display = 'none';
     }
