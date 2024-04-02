@@ -44,7 +44,7 @@ function createPromise(e) {
       });
     });
 
-  setTimeout(() => {
-    window.location.reload(true);
-  }, 6000);
+  // setTimeout(() => {
+  //   window.location.reload(true);
+  // }, 6000);
 }
