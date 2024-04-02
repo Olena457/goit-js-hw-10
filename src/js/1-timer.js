@@ -41,15 +41,10 @@ const options = {
 
 flatpickr(text, options);
 
-let anotherZero = 2;
 function addLeadingZero(value) {
   const stringValue = String(value);
   const formattedValue = stringValue.padStart(2, '0');
   return formattedValue;
-}
-if (value >= 100) {
-  anotherZero = 3;
-  return String(value).padStart(anotherZero, '0');
 }
 
 btnStart.addEventListener('click', () => {
@@ -62,19 +57,8 @@ btnStart.addEventListener('click', () => {
       hours.textContent = addLeadingZero(objectTime.hours);
       minutes.textContent = addLeadingZero(objectTime.minutes);
       seconds.textContent = addLeadingZero(objectTime.seconds);
-      timerHtml.textContent = `${addLeadingZero(
-        objectTime.hours
-      )}:${addLeadingZero(objectTime.minutes)}:${addLeadingZero(
-        objectTime.seconds
-      )}`;
     } else {
       clearInterval(timer);
-      iziToast.show({
-        title: 'Digital timer',
-        message: 'Countdown is over',
-        position: 'topRight',
-        timeout: 3000,
-      });
     }
   }, 1000);
 });
@@ -91,6 +75,8 @@ function convertMs(ms) {
 
   return { days, hours, minutes, seconds };
 }
-console.log(convertMs(2000)); // {days: 0, hours: 0, minutes: 0, seconds: 2}
-console.log(convertMs(140000)); // {days: 0, hours: 0, minutes: 2, seconds: 20}
-console.log(convertMs(24140000)); // {days: 0, hours: 6, minutes: 42, seconds: 20}
+// console.log(convertMs(2000)); // {days: 0, hours: 0, minutes: 0, seconds: 2}
+// console.log(convertMs(140000)); // {days: 0, hours: 0, minutes: 2, seconds: 20}
+// console.log(convertMs(24140000)); // {days: 0, hours: 6, minutes: 42, seconds: 20}
+
+console.log('1-timer.js - loaded');

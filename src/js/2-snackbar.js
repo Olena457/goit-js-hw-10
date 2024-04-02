@@ -43,8 +43,5 @@ function createPromise(e) {
         timeout: 2000,
       });
     });
-
-  // setTimeout(() => {
-  //   window.location.reload(true);
-  // }, 6000);
 }
+console.log('2-snackbar.js - loaded');
