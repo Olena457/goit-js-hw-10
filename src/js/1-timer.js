@@ -94,18 +94,3 @@ function convertMs(ms) {
 console.log(convertMs(2000)); // {days: 0, hours: 0, minutes: 0, seconds: 2}
 console.log(convertMs(140000)); // {days: 0, hours: 0, minutes: 2, seconds: 20}
 console.log(convertMs(24140000)); // {days: 0, hours: 6, minutes: 42, seconds: 20}
-
-// setTimeout(() => {
-//   window.location.reload(true);
-// }, 6000);
-
-// function updateCurrentTime({ days, hours, minutes, seconds }) {
-//   const formattedTime = `${addLeadingZero(days)}:${addLeadingZero(
-//     hours
-//   )}:${addLeadingZero(minutes)}:${addLeadingZero(seconds)}`;
-//   timerHtml.textContent = formattedTime;
-//   if (!days && !hours && !minutes && !seconds) {
-//     timerHtml.textContent = '00:00:00:00';
-//   }
-// }
-//
