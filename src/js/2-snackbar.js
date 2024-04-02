@@ -2,12 +2,17 @@ import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
 const form = document.getElementById('createForm');
-const delay = parseInt(document.getElementById('delay').value);
-const state = document.querySelector('input[name="state"]:checked');
+const stateRadioButtons = document.querySelectorAll('input[name="state"]');
+const delayInput = document.getElementById('delay');
+
 form.addEventListener('submit', createPromise);
 
 function createPromise(e) {
   e.preventDefault();
+
+  const selectedState = Array.from(stateRadioButtons).find(rb => rb.checked);
+  const state = selectedState ? selectedState.value : 'rejected';
+  const delay = parseInt(delayInput.value);
 
   const promise = new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -23,20 +28,23 @@ function createPromise(e) {
     .then(delay => {
       iziToast.show({
         title: 'Fulfilled promise',
-        message: `✅ Fulfilled promise in ${delay}ms`,
+        message: `✅ Fulfilled promise${state} in ${delay}ms`,
+        color: '#16971b',
         position: 'topRight',
-        timeout: 3000,
-        color: 'green',
+        timeout: 2000,
       });
     })
     .catch(delay => {
       iziToast.show({
         title: 'Rejected promise',
-        message: `❌ Rejected promise in ${delay}ms`,
+        message: `❌ Rejected promise${state} in ${delay}ms`,
         position: 'topRight',
-        timeout: 3000,
-        color: 'red',
+        color: '#da1418',
+        timeout: 2000,
       });
     });
-  form.reset();
+
+  setTimeout(() => {
+    window.location.reload(true);
+  }, 6000);
 }

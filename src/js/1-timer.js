@@ -1,6 +1,4 @@
-// Описаний в документації
 import flatpickr from 'flatpickr';
-// Додатковий імпорт стилів
 import 'flatpickr/dist/flatpickr.min.css';
 
 import iziToast from 'izitoast';
@@ -15,7 +13,7 @@ const hours = document.querySelector('span[data-hours]');
 const days = document.querySelector('span[data-days]');
 
 btnStart.disabled = true;
-let userSelectedDate;
+let userSelectedDates;
 let timer;
 
 const options = {
@@ -30,12 +28,11 @@ const options = {
         title: 'Future date',
         message: 'Please choose a date in the future',
         position: 'topRight',
-        timeout: 1000,
-        color: 'red',
+        timeout: 2000,
+        color: '#da1418',
       });
-      btnStart.disabled = true;
     } else {
-      userSelectedDate = selectedDates[0];
+      userSelectedDates = selectedDates[0];
       btnStart.disabled = false;
       console.log(selectedDates[0]);
     }
@@ -44,10 +41,15 @@ const options = {
 
 flatpickr(text, options);
 
+let anotherZero = 2;
 function addLeadingZero(value) {
   const stringValue = String(value);
   const formattedValue = stringValue.padStart(2, '0');
   return formattedValue;
+}
+if (value >= 100) {
+  anotherZero = 3;
+  return String(value).padStart(anotherZero, '0');
 }
 
 btnStart.addEventListener('click', () => {
@@ -55,11 +57,16 @@ btnStart.addEventListener('click', () => {
     const timeDecrease = new Date(text.value) - new Date();
     btnStart.disabled = true;
     if (timeDecrease >= 0) {
-      let objectTime = convertMs(timeDecrease);
+      const objectTime = convertMs(timeDecrease);
       days.textContent = addLeadingZero(objectTime.days);
       hours.textContent = addLeadingZero(objectTime.hours);
       minutes.textContent = addLeadingZero(objectTime.minutes);
       seconds.textContent = addLeadingZero(objectTime.seconds);
+      timerHtml.textContent = `${addLeadingZero(
+        objectTime.hours
+      )}:${addLeadingZero(objectTime.minutes)}:${addLeadingZero(
+        objectTime.seconds
+      )}`;
     } else {
       clearInterval(timer);
       iziToast.show({
@@ -67,9 +74,7 @@ btnStart.addEventListener('click', () => {
         message: 'Countdown is over',
         position: 'topRight',
         timeout: 3000,
-        color: 'red',
       });
-      timerHtml.style.display = 'none';
     }
   }, 1000);
 });
@@ -86,7 +91,23 @@ function convertMs(ms) {
 
   return { days, hours, minutes, seconds };
 }
-
 console.log(convertMs(2000)); // {days: 0, hours: 0, minutes: 0, seconds: 2}
 console.log(convertMs(140000)); // {days: 0, hours: 0, minutes: 2, seconds: 20}
 console.log(convertMs(24140000)); // {days: 0, hours: 6, minutes: 42, seconds: 20}
+
+// timerHtml.textContent = `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
+
+// setTimeout(() => {
+//   window.location.reload(true);
+// }, 6000);
+
+// function updateCurrentTime({ days, hours, minutes, seconds }) {
+//   const formattedTime = `${addLeadingZero(days)}:${addLeadingZero(
+//     hours
+//   )}:${addLeadingZero(minutes)}:${addLeadingZero(seconds)}`;
+//   timerHtml.textContent = formattedTime;
+//   if (!days && !hours && !minutes && !seconds) {
+//     timerHtml.textContent = '00:00:00:00';
+//   }
+// }
+//

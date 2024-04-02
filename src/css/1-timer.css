@@ -20,7 +20,7 @@ button {
   background: #4e75ff;
 }
 button:hover {
-  background: #6c8cff;
+  background: hsl(207, 100%, 71%);
 }
 button:disabled {
   background: #cfcfcf;
