@@ -35,6 +35,7 @@ const options = {
       userSelectedDates = selectedDates[0];
       btnStart.disabled = false;
       console.log(selectedDates[0]);
+      text.disabled = true;
     }
   },
 };

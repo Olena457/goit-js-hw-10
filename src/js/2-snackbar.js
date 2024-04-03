@@ -28,7 +28,7 @@ function createPromise(e) {
     .then(delay => {
       iziToast.show({
         title: 'Fulfilled promise',
-        message: `✅ Fulfilled promise${state} in ${delay}ms`,
+        message: `✅ Fulfilled promise in ${delay}ms`,
         color: '#16971b',
         position: 'topRight',
         timeout: 2000,
@@ -37,7 +37,7 @@ function createPromise(e) {
     .catch(delay => {
       iziToast.show({
         title: 'Rejected promise',
-        message: `❌ Rejected promise${state} in ${delay}ms`,
+        message: `❌ Rejected promise in ${delay}ms`,
         position: 'topRight',
         color: '#da1418',
         timeout: 2000,
